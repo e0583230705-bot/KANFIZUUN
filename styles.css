@@ -394,17 +394,19 @@ body.a11y-font,body.a11y-font *{font-family:Arial,Helvetica,sans-serif!important
 .dp-other b{font-family:var(--display);font-size:1.2rem;font-weight:500}
 body.dp .nav{background:rgba(11,26,51,.94)}
 
-/* ===== Hero: tziyunim slideshow ===== */
-.hero-slides{position:absolute;inset:0;z-index:-2;overflow:hidden;background:var(--night)}
-.hero-slides img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 38%;opacity:0;
-  filter:saturate(.75) contrast(1.05) brightness(.8) sepia(.18);animation:kb 30s ease-in-out infinite alternate;opacity:1}
-.hero-slides img:nth-child(2){animation-delay:9s;object-position:50% 45%}
-@keyframes tzfade{0%{opacity:0;transform:scale(1.02)}8%{opacity:1}50%{opacity:1}58%{opacity:0;transform:scale(1.12)}100%{opacity:0;transform:scale(1.12)}}
-.hero::before{background:
-  linear-gradient(180deg,rgba(5,13,28,.55) 0%,rgba(5,13,28,.15) 30%,rgba(5,13,28,.55) 70%,rgba(11,26,51,.96) 100%),
-  linear-gradient(270deg,rgba(11,26,51,.85) 0%,rgba(11,26,51,.45) 45%,rgba(11,26,51,.1) 100%),
-  radial-gradient(ellipse at 50% 100%,rgba(200,160,75,.18),transparent 60%)!important}
-@media(max-width:899px){.hero::before{background:linear-gradient(180deg,rgba(5,13,28,.5) 0%,rgba(5,13,28,.35) 35%,rgba(11,26,51,.9) 78%,rgba(11,26,51,1) 100%)!important}}
-@media(prefers-reduced-motion:reduce){.hero-slides img{animation:none}.hero-slides img:first-child{opacity:1}}
-body.a11y-nomotion .hero-slides img{animation:none}
-body.a11y-nomotion .hero-slides img:first-child{opacity:1}
+/* ===== Hero: journey map ===== */
+.hero{background:radial-gradient(ellipse 70% 60% at 22% 55%,rgba(200,160,75,.13),transparent 60%),radial-gradient(ellipse 60% 50% at 90% 0%,rgba(42,165,151,.10),transparent 60%),linear-gradient(180deg,#050d1c 0%,#0b1a33 60%,#13284a 100%)}
+.hero::before{background:none!important}
+.hero-map{position:absolute!important;z-index:-1;left:4%;top:50%;transform:translateY(-46%);width:auto!important;height:min(82svh,760px);max-width:none!important;margin:0!important;pointer-events:none}
+.hero-map .pin-label{font-size:1.05rem}
+.hero-map .route{opacity:.85}
+.hero-map.drawn .route{animation-delay:.6s}
+.hero-map.drawn .route:nth-child(2){animation-delay:.85s}.hero-map.drawn .route:nth-child(3){animation-delay:1.1s}.hero-map.drawn .route:nth-child(4){animation-delay:1.35s}
+.flylight{fill:#ffe9b8;filter:drop-shadow(0 0 6px #e2c27a) drop-shadow(0 0 14px rgba(226,194,122,.8))}
+.hero-map .ref-label,.hero-map .sea-label{opacity:.55}
+@media(max-width:899px){
+  .hero-map{left:50%;top:5.5rem;transform:translateX(-50%);height:auto;width:min(96vw,460px)!important;opacity:.38}
+  .hero-map .pin-label,.hero-map .ref-label,.hero-map .sea-label,.hero-map .home-label{display:none}
+}
+@media(prefers-reduced-motion:reduce){.flylight{display:none}}
+body.a11y-nomotion .flylight{display:none}

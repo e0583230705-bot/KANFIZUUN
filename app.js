@@ -60,7 +60,7 @@
   tabs.forEach(function (t) { t.addEventListener("click", function () { select(t.dataset.dest); }); });
   pins.forEach(function (p) { p.addEventListener("click", function () { select(p.dataset.dest); }); });
 
-  var map = document.querySelector(".map");
+  var map = document.querySelector(".journey .map");
   if (map) {
     if ("IntersectionObserver" in window) {
       var mo = new IntersectionObserver(function (en) { if (en[0].isIntersecting) { map.classList.add("drawn"); mo.disconnect(); } }, { threshold: 0.12 });
