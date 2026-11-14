@@ -183,6 +183,54 @@
     document.body.appendChild(box); document.body.style.overflow = "hidden"; box.querySelector(".lx").focus();
   });
 
+  /* ---------- Promo popup: current flyers, once per visit, until their end date ---------- */
+  var PROMOS = [
+    { until: "2026-12-06", img: "/images/flyer-chanukah-women.jpg", title: "חנוכה באומן לנשים ונערות",
+      dest: "uman_chanukah_w", call: "0583240685", callText: "058-3240685" },
+    { until: "2026-12-10", img: "/images/flyer-shabbat-chanukah.jpg", title: "שבת חנוכה באומן — טבלת טיסות",
+      dest: "uman_shabbat_chanukah", call: "0527141425", callText: "052-714-1425" }
+  ];
+  (function () {
+    var nowD = new Date(); nowD.setHours(0, 0, 0, 0);
+    var live = PROMOS.filter(function (p) { return new Date(p.until + "T23:59:59") >= nowD; });
+    if (!live.length || document.body.classList.contains("dp")) return;
+    var KEYP = "kz-promo-" + live.map(function (p) { return p.until; }).join("_"), seen = false;
+    try { seen = !!sessionStorage.getItem(KEYP); } catch (e) {}
+    if (seen) return;
+    var i = 0, last = null;
+    var box = document.createElement("div");
+    box.className = "promo2"; box.setAttribute("role", "dialog"); box.setAttribute("aria-modal", "true"); box.setAttribute("aria-label", "מבצעים ונסיעות קרובות");
+    box.innerHTML = '<div class="p2-card"><button type="button" class="p2-x" aria-label="סגירת חלון">✕</button>' +
+      '<div class="p2-img"><img alt=""></div>' +
+      '<div class="p2-bar">' + (live.length > 1 ? '<div class="p2-dots" role="tablist">' + live.map(function (p, k) { return '<button type="button" role="tab" aria-label="' + p.title + '" data-k="' + k + '"></button>'; }).join("") + '</div>' : '') +
+      '<div class="p2-ctas"><button type="button" class="btn btn-gold p2-reg">שריינו מקום</button><a class="btn btn-line p2-call"></a></div></div></div>';
+    var img = box.querySelector("img"), call = box.querySelector(".p2-call"), reg = box.querySelector(".p2-reg");
+    function show(k) {
+      i = (k + live.length) % live.length; var p = live[i];
+      img.src = p.img; img.alt = p.title; call.href = "tel:" + p.call; call.textContent = "התקשרו: " + p.callText;
+      reg.dataset.register = p.dest; reg.dataset.trip = "";
+      box.querySelectorAll(".p2-dots button").forEach(function (b, n) { b.setAttribute("aria-selected", n === i ? "true" : "false"); });
+    }
+    function close() { box.classList.remove("open"); document.body.style.overflow = ""; clearInterval(auto); if (last) last.focus(); }
+    function onKey(e) { if (!box.classList.contains("open")) return; if (e.key === "Escape") close(); if (e.key === "ArrowLeft") show(i + 1); if (e.key === "ArrowRight") show(i - 1); }
+    box.addEventListener("click", function (e) {
+      if (e.target === box || e.target.closest(".p2-x")) return close();
+      var d = e.target.closest(".p2-dots button"); if (d) { clearInterval(auto); show(+d.dataset.k); }
+      if (e.target.closest(".p2-reg")) close();
+    });
+    var sx = null;
+    box.addEventListener("touchstart", function (e) { sx = e.touches[0].clientX; }, { passive: true });
+    box.addEventListener("touchend", function (e) { if (sx === null) return; var dx = e.changedTouches[0].clientX - sx; if (Math.abs(dx) > 40) { clearInterval(auto); show(i + (dx < 0 ? 1 : -1)); } sx = null; });
+    document.addEventListener("keydown", onKey);
+    document.body.appendChild(box); show(0);
+    var auto = null;
+    setTimeout(function () {
+      last = document.activeElement; box.classList.add("open"); document.body.style.overflow = "hidden"; box.querySelector(".p2-x").focus();
+      try { sessionStorage.setItem(KEYP, "1"); } catch (e) {}
+      if (live.length > 1) auto = setInterval(function () { show(i + 1); }, 6000);
+    }, 2200);
+  })();
+
   /* ---------- Stats ---------- */
   var sg = $("stats-grid");
   if (sg && STATS.length) {

@@ -439,3 +439,19 @@ body.a11y-nomotion .hero-photo img,body.a11y-nomotion .hero-photo{animation:none
 .j-visual figcaption{margin-top:1.4rem;font-family:var(--display);font-size:1.15rem;color:var(--gold-hi)}
 .tcard .tflyer{background:none;border:0;padding:0;font:inherit;font-size:.9rem;color:var(--ink);text-decoration:underline;text-decoration-color:var(--gold);text-underline-offset:4px;cursor:pointer}
 .lb figure{margin:0;max-height:100%;display:flex}
+
+/* promo popup with flyers */
+.promo2{position:fixed;inset:0;z-index:130;background:rgba(5,12,26,.82);display:none;align-items:center;justify-content:center;padding:1rem;backdrop-filter:blur(3px)}
+.promo2.open{display:flex;animation:p2in .35s ease-out}
+@keyframes p2in{from{opacity:0}to{opacity:1}}
+.p2-card{position:relative;background:var(--paper);border-radius:18px;overflow:hidden;max-width:min(30rem,100%);max-height:100%;display:flex;flex-direction:column;box-shadow:0 40px 80px -30px rgba(0,0,0,.7);border:1px solid var(--gold)}
+.p2-img{flex:1;min-height:0;background:#fff;display:flex}
+.p2-img img{width:100%;height:auto;max-height:calc(100svh - 9.5rem);object-fit:contain;display:block}
+.p2-bar{padding:.8rem 1rem 1rem;display:grid;gap:.7rem;background:var(--paper);border-top:1px solid var(--line)}
+.p2-dots{display:flex;justify-content:center;gap:.5rem}
+.p2-dots button{width:.65rem;height:.65rem;border-radius:50%;border:1px solid var(--gold);background:transparent;padding:0}
+.p2-dots button[aria-selected="true"]{background:var(--gold);width:1.6rem;border-radius:999px}
+.p2-ctas{display:grid;grid-template-columns:1fr 1fr;gap:.6rem}
+.p2-ctas .btn{padding:.75rem .8rem;font-size:.92rem;justify-content:center;text-align:center}
+.p2-x{position:absolute;top:.6rem;left:.6rem;z-index:2;width:2.4rem;height:2.4rem;border-radius:50%;border:0;background:rgba(11,26,51,.85);color:#fff;font-size:1.05rem}
+body.a11y-nomotion .promo2.open{animation:none}
