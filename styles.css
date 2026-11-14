@@ -437,3 +437,5 @@ body.a11y-nomotion .hero-photo img,body.a11y-nomotion .hero-photo{animation:none
 .j-emblem{position:absolute;inset:0;margin:auto;width:60%;height:30%;color:var(--gold);opacity:0;transition:opacity .5s}
 .j-frame.no-img .j-emblem{opacity:.8}
 .j-visual figcaption{margin-top:1.4rem;font-family:var(--display);font-size:1.15rem;color:var(--gold-hi)}
+.tcard .tflyer{background:none;border:0;padding:0;font:inherit;font-size:.9rem;color:var(--ink);text-decoration:underline;text-decoration-color:var(--gold);text-underline-offset:4px;cursor:pointer}
+.lb figure{margin:0;max-height:100%;display:flex}

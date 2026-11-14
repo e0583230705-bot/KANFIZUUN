@@ -13,6 +13,10 @@
      Columns: dest, heb, date (YYYY-MM-DD), price, seats, note           */
   var TRIPS_CSV = "https://docs.google.com/spreadsheets/d/159Dz2Gfa0_xajgjnGyM_d9-QufYQnsEPRklJt5MnXas/gviz/tq?tqx=out:csv";
   var TRIPS = [
+    { dest: "uman_chanukah_w", heb: "כ״ו–ל׳ כסלו תשפ״ז", date: "2026-12-06", price: "", seats: "",
+      note: "מ-6/12 עד 10/12 · מלון מפואר · אוכל גורמה · נסיעות VIP · טיסות אל על · הנחה משמעותית לנרשמות יחד", flyer: "/images/flyer-chanukah-women.jpg" },
+    { dest: "uman_shabbat_chanukah", heb: "שבת חנוכה תשפ״ז", date: "2026-12-07", price: "טיסות לקישינב החל מ-320$ לכיוון · הלוך ושוב באמצע חנוכה במבצע 690$", seats: "",
+      note: "טיסות הלוך בין 7/12 ל-10/12 · חזור בין 13/12 ל-15/12", flyer: "/images/flyer-shabbat-chanukah.jpg" },
     { dest: "lizhensk", heb: "כ״א אדר ב׳ תשפ״ז", date: "2027-03-30", price: "", seats: "", note: "" },
     { dest: "kerestir", heb: "ג׳ אייר תשפ״ז", date: "2027-05-10", price: "", seats: "", note: "" },
     { dest: "uman", heb: "ראש השנה תשפ״ח", date: "2027-10-02", price: "", seats: "", note: "" },
@@ -32,6 +36,10 @@
       desc: "נסיעה מאורגנת לציון \"רבי שייעלע\", שידוע כפועל ישועות לכל הפונים אליו." },
     pressburg: { name: "רבינו החתם סופר", place: "פרשבורג, ברטיסלבה", when: "הילולא כ״ה תשרי",
       desc: "נסיעה לציון גדול הדור, ראש ישיבת פרשבורג, בליווי סיפורים והתרוממות רוח." },
+    uman_chanukah_w: { name: "חנוכה באומן לנשים ונערות", place: "אומן, אוקראינה", when: "חנוכה", base: "uman", page: "/uman",
+      desc: "להאיר את הנשמה — חנוכה באומן לנשים ונערות: מלון מפואר, אוכל גורמה, אווירה שמורה, נסיעות VIP וטיסות אל על. לפרטים: 058-3240685." },
+    uman_shabbat_chanukah: { name: "שבת חנוכה באומן", place: "אומן, אוקראינה · טיסות לקישינב", when: "שבת חנוכה", base: "uman", page: "/uman",
+      desc: "טיסות לשבת חנוכה באומן, דרך קישינב — מגוון מועדים וחברות תעופה, החל מ-320$ לכיוון." },
     uman: { name: "אומן ראש השנה", place: "אומן, אוקראינה", when: "ראש השנה",
       desc: "מגוון טיסות ומסלולים לציון רבי נחמן מברסלב באומן לראש השנה." }
   };
@@ -118,7 +126,7 @@
           '<span class="tstat' + cls + '">' + stat + '</span>' +
           (t.price ? '<p class="tprice">' + esc(t.price) + '</p>' : '') +
           '<div class="tact"><button type="button" class="btn btn-ink" data-register="' + t.dest + '" data-trip="' + esc(tripLabel(t)) + '">שריינו מקום</button>' +
-          '<a href="/' + t.dest + '">פרטים</a></div></article>';
+          (t.flyer ? '<button type="button" class="tflyer" data-flyer="' + esc(t.flyer) + '" data-title="' + esc(d.name) + '">לפרסום המלא</button>' : '<a href="' + (d.page || "/" + t.dest) + '">פרטים</a>') + '</div></article>';
       }).join("");
     }
 
@@ -132,7 +140,7 @@
         $("np-unit").textContent = days === 0 ? "" : (days === 1 ? "יום" : "ימים");
         var cta = $("np-cta"); cta.removeAttribute("href"); cta.setAttribute("role", "button");
         cta.dataset.register = next.dest; cta.dataset.trip = tripLabel(next);
-        if (panel) select(next.dest);
+        if (panel) select(d.base || next.dest);
       } else pass.parentElement.parentElement.style.display = "none";
     }
     if (panel && !next) select("lizhensk");
@@ -140,7 +148,7 @@
     /* destination page: next date */
     var dpk = document.body.dataset.dest, dpn = $("dp-next");
     if (dpk && dpn) {
-      var nd = future.filter(function (t) { return t.dest === dpk; })[0];
+      var nd = future.filter(function (t) { return t.dest === dpk || (DEST[t.dest].base === dpk); })[0];
       if (nd) dpn.textContent = "הנסיעה הקרובה: " + nd.dt.getDate() + " ב" + MONTHS[nd.dt.getMonth()] + " " + nd.dt.getFullYear();
     }
 
@@ -148,7 +156,7 @@
     var sel = $("r-trip");
     if (sel) {
       var opts = future.map(function (t) { return tripLabel(t); });
-      Object.keys(DEST).forEach(function (k) { opts.push(DEST[k].name + " — מועד אחר"); });
+      Object.keys(DEST).forEach(function (k) { if (!DEST[k].base) opts.push(DEST[k].name + " — מועד אחר"); });
       opts.push("טיול נשים ונערות", "אחר");
       sel.innerHTML = opts.map(function (o) { return "<option>" + esc(o) + "</option>"; }).join("");
     }
@@ -161,6 +169,19 @@
       .then(function (txt) { var l = parseCSV(txt); if (l.length) renderTrips(l); })
       .catch(function () {});
   }
+
+  /* ---------- Flyer viewer ---------- */
+  document.addEventListener("click", function (e) {
+    var b = e.target.closest("[data-flyer]"); if (!b) return;
+    var box = document.createElement("div");
+    box.className = "lb open"; box.setAttribute("role", "dialog"); box.setAttribute("aria-modal", "true"); box.setAttribute("aria-label", b.dataset.title);
+    box.innerHTML = '<button class="lx" type="button" aria-label="סגירה">✕</button><figure><img src="' + b.dataset.flyer + '" alt="' + b.dataset.title + '"></figure>';
+    function close() { box.remove(); document.body.style.overflow = ""; b.focus(); document.removeEventListener("keydown", onKey); }
+    function onKey(ev) { if (ev.key === "Escape") close(); }
+    box.addEventListener("click", function (ev) { if (ev.target === box || ev.target.closest(".lx")) close(); });
+    document.addEventListener("keydown", onKey);
+    document.body.appendChild(box); document.body.style.overflow = "hidden"; box.querySelector(".lx").focus();
+  });
 
   /* ---------- Stats ---------- */
   var sg = $("stats-grid");
