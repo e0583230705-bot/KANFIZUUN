@@ -289,7 +289,7 @@ body.a11y-font,body.a11y-font *{font-family:Arial,Helvetica,sans-serif!important
 /* flight progress */
 .flight{position:fixed;top:6rem;bottom:6rem;left:1.1rem;width:2px;z-index:40;pointer-events:none;background:linear-gradient(rgba(200,160,75,.0),rgba(200,160,75,.35) 10%,rgba(200,160,75,.35) 90%,rgba(200,160,75,0))}
 .flight .trail{position:absolute;top:0;left:0;width:2px;background:var(--gold);height:0}
-.flight svg{position:absolute;left:-11px;width:24px;height:24px;color:var(--gold-hi);transform:translateY(-50%) rotate(90deg);filter:drop-shadow(0 2px 6px rgba(0,0,0,.35))}
+.flight svg{position:absolute;left:-11px;width:24px;height:24px;color:var(--gold-hi);transform:translateY(-50%);filter:drop-shadow(0 0 6px rgba(226,194,122,.8))}
 @media(max-width:899px){.flight{display:none}}
 /* trips board */
 .trips{padding:6rem 0 5rem}
@@ -428,3 +428,12 @@ body.a11y-nomotion .flylight{display:none}
 @media(prefers-reduced-motion:reduce){.hero-photo img,.hero-photo{animation:none}}
 body.a11y-nomotion .hero-photo img,body.a11y-nomotion .hero-photo{animation:none}
 .hero-map .grat,.hero-map .refdots,.hero-map .ref-label,.hero-map .sea-label{display:none}
+
+/* journey: arched visual instead of second map */
+.j-visual{margin:0 auto;max-width:24rem;width:100%;text-align:center}
+.j-frame{position:relative;aspect-ratio:3/4;border-radius:999px 999px 18px 18px;overflow:hidden;background:radial-gradient(ellipse at 50% 70%,rgba(200,160,75,.22),transparent 70%),linear-gradient(180deg,#13284a,#0b1a33);box-shadow:0 0 0 1px rgba(200,160,75,.55),0 0 0 10px rgba(11,26,51,.6),0 0 0 11px rgba(200,160,75,.3),0 40px 80px -40px rgba(0,0,0,.8)}
+.j-frame img{width:100%;height:100%;object-fit:cover;filter:saturate(.85) brightness(.9);transition:opacity .5s}
+.j-frame img.off{opacity:0}
+.j-emblem{position:absolute;inset:0;margin:auto;width:60%;height:30%;color:var(--gold);opacity:0;transition:opacity .5s}
+.j-frame.no-img .j-emblem{opacity:.8}
+.j-visual figcaption{margin-top:1.4rem;font-family:var(--display);font-size:1.15rem;color:var(--gold-hi)}

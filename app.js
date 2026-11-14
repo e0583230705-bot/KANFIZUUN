@@ -56,6 +56,14 @@
       '<button type="button" class="btn btn-gold" data-register="' + key + '">להרשמה לנסיעה</button>' +
       '<a class="more" href="/' + key + '">כל הפרטים על היעד ←</a>';
     panel.classList.remove("swap"); void panel.offsetWidth; panel.classList.add("swap");
+    var img = $("j-img"), cap = $("j-cap");
+    if (img) {
+      var IMG = { lizhensk: ["/images/ohel.jpg", "ציון רבי אלימלך מליז'ענסק"], kerestir: ["/images/kerestir.jpg", "ציון ר' ישעיה מקערסטיר"] };
+      var v = IMG[key], fr = img.parentNode;
+      cap.textContent = v ? v[1] : d.name + " · " + d.place;
+      if (v) { img.classList.add("off"); setTimeout(function () { img.src = v[0]; img.alt = v[1]; img.classList.remove("off"); }, 250); fr.classList.remove("no-img"); }
+      else { img.classList.add("off"); fr.classList.add("no-img"); }
+    }
   }
   tabs.forEach(function (t) { t.addEventListener("click", function () { select(t.dataset.dest); }); });
   pins.forEach(function (p) { p.addEventListener("click", function () { select(p.dataset.dest); }); });
