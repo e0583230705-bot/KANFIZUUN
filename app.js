@@ -120,7 +120,7 @@
         }
         return '<article class="tcard">' +
           '<span class="tdays">' + (n === 0 ? "היום" : "בעוד " + n + " ימים") + '</span>' +
-          '<p class="tdate">' + t.dt.getDate() + ' ב' + MONTHS[t.dt.getMonth()] + '<small>' + esc(t.heb) + '</small></p>' +
+          '<p class="tdate"><b>' + t.dt.getDate() + '</b><span>ב' + MONTHS[t.dt.getMonth()] + '</span><small>' + esc(t.heb) + '</small></p>' +
           '<h3>' + d.name + '</h3><p class="tplace">' + d.place + '</p>' +
           (t.note ? '<p class="tplace">' + esc(t.note) + '</p>' : '') +
           '<span class="tstat' + cls + '">' + stat + '</span>' +
@@ -141,7 +141,7 @@
         var cta = $("np-cta"); cta.removeAttribute("href"); cta.setAttribute("role", "button");
         cta.dataset.register = next.dest; cta.dataset.trip = tripLabel(next);
         if (panel) select(d.base || next.dest);
-      } else pass.parentElement.parentElement.style.display = "none";
+      } else pass.style.display = "none";
     }
     if (panel && !next) select("lizhensk");
 
@@ -169,6 +169,23 @@
       .then(function (txt) { var l = parseCSV(txt); if (l.length) renderTrips(l); })
       .catch(function () {});
   }
+
+  /* ---------- Cover panels: open on hover/focus, slow auto-cycle ---------- */
+  (function () {
+    var wrap = $("panels"); if (!wrap) return;
+    var ps = Array.prototype.slice.call(wrap.querySelectorAll(".panel")), cur = 0, hold = false;
+    function open(k) { cur = k; ps.forEach(function (p, n) { p.classList.toggle("is-open", n === k); }); }
+    ps.forEach(function (p, n) {
+      p.addEventListener("mouseenter", function () { hold = true; open(n); });
+      p.addEventListener("focus", function () { hold = true; open(n); });
+    });
+    wrap.addEventListener("mouseleave", function () { hold = false; });
+    setInterval(function () {
+      if (hold || document.hidden || document.body.classList.contains("a11y-nomotion")) return;
+      if (window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+      open((cur + 1) % ps.length);
+    }, 5000);
+  })();
 
   /* ---------- Flyer viewer ---------- */
   document.addEventListener("click", function (e) {

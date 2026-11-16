@@ -1,0 +1,153 @@
+/* ===== Kanfei Zion — modern magazine layer ===== */
+:root{
+  --paper:#ffffff;--parch:#f6f7f9;--parch-2:#eaf0f4;
+  --night:#0e1b33;--navy:#16284a;--ink:#0e1b33;--muted:#5b6578;--line:#dde3ea;
+  --gold:#b8893a;--gold-hi:#d6ab5e;--teal:#17897d;
+  --display:"Karantina","Assistant",sans-serif;
+  --sans:"Assistant",system-ui,-apple-system,"Segoe UI",Arial,sans-serif;
+}
+body{background:var(--paper);font-size:1.0625rem}
+h1,h2,h3{font-family:var(--display);font-weight:700;letter-spacing:0;line-height:.95}
+.flight{display:none}
+.btn{border-radius:6px;font-weight:600}
+.btn-line{border-color:var(--ink);color:var(--ink)}
+.btn-line:hover{background:var(--ink);color:#fff}
+.btn-ink{background:var(--ink);color:#fff}
+.btn-ink:hover{background:var(--navy)}
+.btn-gold{background:var(--gold);color:#fff}
+.btn-gold:hover{background:#9d7330}
+
+/* nav: light, magazine masthead */
+.nav{background:rgba(255,255,255,.92)!important;backdrop-filter:blur(10px);border-bottom:1px solid var(--line);color:var(--ink)}
+.nav .nav-links a{color:var(--ink)}
+.nav .nav-links a:hover{color:var(--teal)}
+.nav .nav-phone{border-color:var(--ink);color:var(--ink)}
+.nav.solid{box-shadow:0 8px 24px -18px rgba(14,27,51,.4)}
+
+.sec-title{font-size:clamp(3rem,8vw,5.5rem);color:var(--ink)}
+.sec-head{display:grid;gap:1rem;margin-bottom:2.5rem;align-items:end}
+@media(min-width:900px){.sec-head{grid-template-columns:auto 1fr;gap:3rem}.sec-head p{max-width:34rem;justify-self:start}}
+.sec-head p{color:var(--muted);font-size:1.1rem;line-height:1.7}
+
+/* ===== Cover ===== */
+.cover{padding:7.5rem 0 4rem;background:var(--paper);position:relative;overflow:hidden}
+.cover-grid{display:grid;gap:2.5rem;align-items:stretch}
+@media(min-width:960px){.cover-grid{grid-template-columns:1fr 1.05fr;gap:3.5rem;min-height:min(78svh,720px)}}
+.cover-text{display:flex;flex-direction:column;justify-content:center}
+.cover-bsd{font-size:.95rem;color:var(--muted);margin-bottom:.5rem}
+.cover-title{font-size:clamp(5.5rem,17vw,11.5rem);line-height:.78;color:var(--ink);display:flex;flex-direction:column}
+.cover-title span:last-child{color:var(--teal)}
+.cover-sub{margin-top:1.75rem;font-size:clamp(1.15rem,2.2vw,1.35rem);line-height:1.6;max-width:30rem;color:var(--ink)}
+.cover-slogan{margin-top:.6rem;font-family:var(--display);font-size:2rem;color:var(--gold);line-height:1}
+.cover-cta{margin-top:1.75rem;display:flex;flex-wrap:wrap;gap:.75rem}
+.nextup{margin-top:2.25rem;display:grid;grid-template-columns:auto 1fr;gap:.25rem 1.25rem;align-items:center;padding:1.1rem 1.25rem;border:1px solid var(--line);border-radius:10px;background:var(--parch)}
+.nextup-count{grid-row:span 2;text-align:center;padding-inline-end:1.25rem;border-inline-end:1px solid var(--line)}
+.nextup-count b{display:block;font-family:var(--display);font-size:3.6rem;line-height:.85;color:var(--teal)}
+.nextup-count span{font-size:.85rem;color:var(--muted)}
+.nextup-label{font-size:.85rem;color:var(--muted)}
+.nextup h2{font-family:var(--sans);font-size:1.2rem;line-height:1.3;color:var(--ink)}
+.nextup-meta{font-size:.92rem;color:var(--muted)}
+.nextup-meta b{color:var(--gold);font-weight:600}
+.nextup .btn{grid-column:2;justify-self:start;margin-top:.5rem;padding:.6rem 1.2rem;font-size:.95rem}
+@media(min-width:600px){.nextup{grid-template-columns:auto 1fr auto}.nextup .btn{grid-column:3;grid-row:1/span 2;margin:0}}
+
+/* expanding tzion panels — the signature */
+.panels{display:flex;gap:.6rem;min-height:26rem}
+@media(min-width:960px){.panels{min-height:0}}
+.panel{position:relative;flex:1;overflow:hidden;border-radius:12px;background:var(--night);transition:flex-grow .7s cubic-bezier(.3,.7,.2,1);animation:panelup .9s cubic-bezier(.2,.7,.2,1) both;animation-delay:calc(.15s + var(--i)*.12s)}
+.panel.is-open{flex-grow:3.2}
+.panel img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform 1.2s ease,filter .6s}
+.panel:not(.is-open) img{filter:saturate(.6) brightness(.75)}
+.panel.is-open img{transform:scale(1.03)}
+.panel::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(14,27,51,0) 45%,rgba(14,27,51,.85) 100%)}
+.panel-cap{position:absolute;z-index:1;inset-inline:1rem;bottom:1rem;color:#fff;display:flex;flex-direction:column;line-height:1.1;white-space:nowrap}
+.panel-cap small{font-size:.85rem;opacity:.8}
+.panel-cap b{font-family:var(--display);font-size:2.6rem;font-weight:700;line-height:.95}
+.panel:not(.is-open) .panel-cap b{font-size:1.7rem}
+.panel:focus-visible{outline:3px solid var(--teal);outline-offset:3px}
+@keyframes panelup{from{opacity:0;transform:translateY(40px)}to{opacity:1;transform:none}}
+@media(max-width:959px){.panels{min-height:20rem}.panel:not(.is-open) .panel-cap small{display:none}}
+@media(prefers-reduced-motion:reduce){.panel{animation:none;transition:none}}
+body.a11y-nomotion .panel{animation:none;transition:none}
+
+/* ===== Departures board ===== */
+.board{padding:5.5rem 0;background:var(--parch)}
+.board-head{display:none}
+.tgrid{display:block!important;border-top:2px solid var(--ink)}
+.tcard{display:grid!important;grid-template-columns:5.5rem 1fr;gap:.35rem 1.25rem;padding:1.4rem 0!important;background:none!important;border:0!important;border-bottom:1px solid var(--line)!important;border-radius:0!important;box-shadow:none!important;transform:none!important;align-items:start}
+.tcard:hover{background:rgba(23,137,125,.04)!important}
+.tcard .tdays{grid-column:1;grid-row:3;order:0;margin:0;font-size:.8rem;color:var(--teal)}
+.tcard .tdate{grid-column:1;grid-row:1/span 2;font-size:2.6rem;line-height:.9}
+.tcard .tdate small{font-family:var(--sans);font-size:.78rem;line-height:1.3;margin-top:.4rem}
+.tcard h3{grid-column:2;margin:0!important;font-family:var(--sans);font-size:1.25rem;line-height:1.3}
+.tcard .tplace{grid-column:2;font-size:.95rem}
+.tcard .tstat{grid-column:2;margin-top:.4rem}
+.tcard .tprice{grid-column:2;margin-top:.2rem;font-weight:600}
+.tcard .tact{grid-column:2;padding-top:.75rem!important;margin:0!important;justify-content:flex-start!important;gap:1.25rem!important}
+.tcard .btn{border-radius:6px}
+@media(min-width:900px){
+  .board-head{display:grid;grid-template-columns:8rem 1.3fr 1.4fr 13rem;gap:2rem;padding-bottom:.6rem;font-size:.85rem;color:var(--muted)}
+  .tcard{grid-template-columns:8rem 1.3fr 1.4fr 13rem;gap:.2rem 2rem;padding:1.6rem 0!important}
+  .tcard .tdate{grid-row:1/span 3;font-size:3.2rem}
+  .tcard .tdays{grid-column:1;grid-row:4}
+  .tcard h3{grid-column:2;grid-row:1}
+  .tcard .tplace{grid-column:2}
+  .tcard .tplace + .tplace{grid-column:3;grid-row:1/span 3;align-self:start}
+  .tcard .tstat{grid-column:2}
+  .tcard .tprice{grid-column:3}
+  .tcard .tact{grid-column:4;grid-row:1/span 4;flex-direction:column!important;align-items:stretch!important;align-self:center;padding:0!important;gap:.6rem!important;text-align:center}
+}
+
+/* ===== Destinations: editorial list ===== */
+.dests{padding:6rem 0;background:var(--paper)}
+.dest-list{list-style:none;border-top:2px solid var(--ink)}
+.dest-list a{display:grid;grid-template-columns:1fr auto;gap:.2rem 1.5rem;padding:1.5rem 0;border-bottom:1px solid var(--line);align-items:baseline;transition:padding .35s,color .25s}
+.dl-name{font-family:var(--display);font-size:clamp(2.4rem,6.5vw,4.4rem);line-height:.95;font-weight:700;grid-column:1}
+.dl-place{grid-column:1;color:var(--muted)}
+.dl-when{grid-column:1;color:var(--gold);font-weight:600}
+.dl-go{grid-column:2;grid-row:1/span 3;align-self:center;font-weight:600;border-bottom:2px solid var(--teal);padding-bottom:2px}
+.dest-list a:hover{color:var(--teal);padding-inline-start:.75rem}
+@media(min-width:900px){.dest-list a{grid-template-columns:1.6fr 1fr 1fr auto}.dl-name,.dl-place,.dl-when{grid-column:auto}.dl-go{grid-column:auto;grid-row:auto}}
+
+/* ===== Why ===== */
+.why{padding:6rem 0;background:var(--night);color:#fff}
+.why .sec-title{color:#fff}
+.why-grid{display:grid;gap:3rem}
+@media(min-width:900px){.why-grid{grid-template-columns:1fr 1.2fr;gap:5rem}}
+.why-quote{margin-top:2rem;font-family:var(--display);font-size:clamp(3rem,7vw,5rem);line-height:.9;color:var(--gold-hi)}
+.why-list{display:grid;gap:0;border-top:1px solid rgba(255,255,255,.25)}
+.why-list div{padding:1.3rem 0;border-bottom:1px solid rgba(255,255,255,.18);display:grid;gap:.3rem}
+@media(min-width:600px){.why-list div{grid-template-columns:12rem 1fr;gap:1.5rem}}
+.why-list dt{font-weight:700;font-size:1.15rem}
+.why-list dd{color:rgba(255,255,255,.75)}
+
+/* ===== quieter restyle of remaining sections ===== */
+.women{background:var(--parch)!important}
+.gallery{background:var(--paper)}
+.voices{background:var(--parch)!important;color:var(--ink)!important}
+.voices .mark{display:none}
+.voices blockquote{color:var(--ink)}
+.feature-q blockquote{font-family:var(--display)!important;font-size:clamp(2.2rem,5vw,3.6rem)!important;line-height:1!important}
+.contact{background:var(--paper)}
+.fbox{border-radius:10px!important}
+.updates{background:var(--teal)!important;color:#fff!important}
+.updates h2{color:#fff}
+.updates .btn-ink{background:var(--ink)}
+.footer{background:var(--night)}
+.tag{border-radius:6px}
+/* cover tuning */
+.cover-title{font-size:clamp(4.6rem,10vw,8.6rem)}
+.cover-title span{white-space:nowrap}
+@media(min-width:960px){.cover{padding-top:6.5rem}.cover-grid{min-height:0;align-items:center}.panels{height:min(36rem,72svh);align-self:center}}
+.panel:not(.is-open) .panel-cap{inset-inline:.6rem}
+.panel:not(.is-open) .panel-cap small{display:none}
+.panel:not(.is-open) .panel-cap b{font-family:var(--sans);font-size:1rem;font-weight:700;white-space:normal}
+section.why{margin-top:0}
+.why .why-quote{margin-top:2rem;font-family:var(--display);font-size:clamp(3rem,7vw,5.2rem);line-height:.9;color:var(--gold-hi)}
+/* board date: big day, small month */
+.tcard .tdate{display:flex;flex-direction:column;line-height:1}
+.tcard .tdate b{font-size:3.6rem;line-height:.85;font-weight:700}
+.tcard .tdate span{font-family:var(--sans);font-size:1rem;font-weight:600;margin-top:.15rem}
+@media(min-width:900px){.tcard .tdate b{font-size:4.2rem}}
+.tcard .tstat{justify-self:start;align-self:start}
+@media(max-width:600px){.cover-slogan{font-size:1.6rem}.cover{padding-top:6rem}}

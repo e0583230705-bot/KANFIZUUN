@@ -22,8 +22,9 @@
 <link rel="manifest" href="/site.webmanifest">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:ital,wght@0,400;0,500;0,700;0,900;1,500&family=Heebo:wght@300;400;500;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/styles.css?v=9">
+<link href="https://fonts.googleapis.com/css2?family=Karantina:wght@400;700&family=Assistant:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/styles.css?v=10">
+<link rel="stylesheet" href="/mag.css?v=10">
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"TravelAgency","name":"כנפי ציון טורס","url":"https://kanfei-zion.com/","logo":"https://kanfei-zion.com/images/logo.png","telephone":"+972527141425","email":"kz0527141425@gmail.com","slogan":"לעוף רחוק להרגיש בבית","description":"נסיעות מאורגנות לקברי צדיקים באירופה ובאוקראינה וטיולים מושקעים לנשים ולנערות."}
 </script>
@@ -41,7 +42,7 @@
   <div class="wrap">
     <a href="#top" class="logo-chip" aria-label="כנפי ציון טורס – לראש הדף"><img src="/images/logo.png" alt="כנפי ציון טורס" width="405" height="179"></a>
     <nav class="nav-links" aria-label="ניווט ראשי">
-      <a href="#trips">נסיעות קרובות</a>
+      <a href="#trips">לוח הנסיעות</a>
       <a href="#journey">היעדים</a>
       <a href="#why">למה כנפי ציון</a>
       <a href="#women">טיולי נשים</a>
@@ -53,139 +54,85 @@
 </header>
 
 <main id="main">
-<section class="hero" id="top">
-  <div class="hero-photo" aria-hidden="true"><img src="/images/ohel.jpg" alt="" width="900" height="1200" fetchpriority="high"></div>
-  <div class="map hero-map drawn" aria-hidden="true">
-<svg class="map-svg" id="hero-map-svg" viewBox="-24 -24 612 776" aria-hidden="true" focusable="false">
-<g class="grat">
-<line x1="23.0" y1="0" x2="23.0" y2="728.5"/>
-<line x1="138.2" y1="0" x2="138.2" y2="728.5"/>
-<line x1="253.4" y1="0" x2="253.4" y2="728.5"/>
-<line x1="368.6" y1="0" x2="368.6" y2="728.5"/>
-<line x1="483.8" y1="0" x2="483.8" y2="728.5"/>
-<line x1="0" y1="713.0" x2="564.4" y2="713.0"/>
-<line x1="0" y1="558.0" x2="564.4" y2="558.0"/>
-<line x1="0" y1="403.0" x2="564.4" y2="403.0"/>
-<line x1="0" y1="248.0" x2="564.4" y2="248.0"/>
-<line x1="0" y1="93.0" x2="564.4" y2="93.0"/>
-</g>
-<g class="refdots">
-<circle cx="161.5" cy="23.9" r="2"/>
-<circle cx="136.8" cy="91.1" r="2"/>
-<circle cx="116.1" cy="170.5" r="2"/>
-<circle cx="380.6" cy="79.0" r="2"/>
-<circle cx="385.2" cy="202.1" r="2"/>
-<circle cx="278.8" cy="265.7" r="2"/>
-<circle cx="345.1" cy="371.7" r="2"/>
-<circle cx="224.2" cy="465.6" r="2"/>
-<circle cx="397.2" cy="711.8" r="2"/>
-</g>
-<g class="routes">
-<path class="route" id="hr-lizhensk" data-dest="lizhensk" d="M488.9 657.8 Q249.8 418.6 194.0 84.9" pathLength="1"/>
-<path class="route" id="hr-kerestir" data-dest="kerestir" d="M488.9 657.8 Q248.0 455.0 169.6 150.0" pathLength="1"/>
-<path class="route" id="hr-pressburg" data-dest="pressburg" d="M488.9 657.8 Q199.1 470.8 71.6 150.4" pathLength="1"/>
-<path class="route" id="hr-uman" data-dest="uman" d="M488.9 657.8 Q347.1 413.2 373.7 131.8" pathLength="1"/>
-</g>
-<circle class="flylight" r="4" visibility="hidden"><set attributeName="visibility" to="visible" begin="2s"/><animateMotion dur="5s" begin="2s" repeatCount="indefinite" keyPoints="0;1" keyTimes="0;1" calcMode="spline" keySplines=".45 0 .25 1"><mpath href="#hr-lizhensk"/></animateMotion></circle><circle class="flylight" r="4" visibility="hidden"><set attributeName="visibility" to="visible" begin="2.8s"/><animateMotion dur="5.6s" begin="2.8s" repeatCount="indefinite" keyPoints="0;1" keyTimes="0;1" calcMode="spline" keySplines=".45 0 .25 1"><mpath href="#hr-kerestir"/></animateMotion></circle><circle class="flylight" r="4" visibility="hidden"><set attributeName="visibility" to="visible" begin="3.6s"/><animateMotion dur="6.2s" begin="3.6s" repeatCount="indefinite" keyPoints="0;1" keyTimes="0;1" calcMode="spline" keySplines=".45 0 .25 1"><mpath href="#hr-pressburg"/></animateMotion></circle><circle class="flylight" r="4" visibility="hidden"><set attributeName="visibility" to="visible" begin="4.4s"/><animateMotion dur="5.2s" begin="4.4s" repeatCount="indefinite" keyPoints="0;1" keyTimes="0;1" calcMode="spline" keySplines=".45 0 .25 1"><mpath href="#hr-uman"/></animateMotion></circle><circle class="home-dot" cx="488.9" cy="657.8" r="6"/><circle class="home-ring" cx="488.9" cy="657.8" r="13"/>
-</svg>
-<span class="ref-label" style="left:30.29%;top:6.16%">ורשה</span>
-<span class="ref-label" style="left:26.26%;top:14.83%">קרקוב</span>
-<span class="ref-label" style="left:22.88%;top:25.05%">בודפשט</span>
-<span class="ref-label" style="left:66.06%;top:13.27%">קייב</span>
-<span class="ref-label" style="left:66.81%;top:29.12%">אודסה</span>
-<span class="ref-label" style="left:49.44%;top:37.30%">בוקרשט</span>
-<span class="ref-label" style="left:60.27%;top:50.96%">איסטנבול</span>
-<span class="ref-label" style="left:40.52%;top:63.05%">אתונה</span>
-<span class="ref-label" style="left:68.77%;top:94.75%">קהיר</span>
-<span class="sea-label" style="left:34.01%;top:76.55%">הים התיכון</span>
-<span class="sea-label" style="left:80.28%;top:41.82%">הים השחור</span>
-<span class="home-label" style="left:83.74%;top:87.81%">ירושלים</span>
-<span class="pin" data-dest="lizhensk" style="left:35.59%;top:14.03%"><span class="pin-dot" aria-hidden="true"></span><span class="pin-label">ליז'ענסק</span></span>
-<span class="pin" data-dest="kerestir" style="left:31.61%;top:22.41%"><span class="pin-dot" aria-hidden="true"></span><span class="pin-label">קערסטיר</span></span>
-<span class="pin" data-dest="pressburg" style="left:15.62%;top:22.45%"><span class="pin-dot" aria-hidden="true"></span><span class="pin-label">פרשבורג</span></span>
-<span class="pin" data-dest="uman" style="left:64.93%;top:20.06%"><span class="pin-dot" aria-hidden="true"></span><span class="pin-label">אומן</span></span>
-  </div>
-  <div class="wrap">
-    <div class="hero-in">
-      <p class="bsd">בס״ד</p>
-      <h1><span>כנפי ציון</span><span>טורס</span></h1>
-      <div class="rule" aria-hidden="true"></div>
-      <p class="hero-sub">נסיעות מאורגנות לקברי צדיקים באירופה ובאוקראינה, וטיולים מושקעים לנשים ולנערות</p>
-      <p class="slogan">״לעוף רחוק להרגיש בבית״</p>
-      <div class="hero-cta">
-        <a class="btn btn-gold" href="tel:0527141425">התקשרו עכשיו</a>
-        <a class="btn btn-ghost" href="mailto:kz0527141425@gmail.com">שלחו מייל</a>
+<section class="cover" id="top" aria-labelledby="cover-title">
+  <div class="wrap cover-grid">
+    <div class="cover-text">
+      <p class="cover-bsd">בס״ד</p>
+      <h1 id="cover-title" class="cover-title"><span>כנפי ציון</span><span>טורס</span></h1>
+      <p class="cover-sub">נסיעות מאורגנות לקברי צדיקים באירופה ובאוקראינה, וטיולים מושקעים לנשים ולנערות</p>
+      <p class="cover-slogan">״לעוף רחוק להרגיש בבית״</p>
+      <div class="cover-cta">
+        <a class="btn btn-ink" href="tel:0527141425">התקשרו עכשיו</a>
+        <a class="btn btn-line" href="mailto:kz0527141425@gmail.com">שלחו מייל</a>
       </div>
+      <article class="nextup" id="next-pass" aria-labelledby="np-name">
+        <div class="nextup-count" aria-live="polite"><b id="np-days">—</b><span id="np-unit">ימים</span></div>
+        <div class="nextup-body">
+          <p class="nextup-label">הנסיעה הקרובה</p>
+          <h2 id="np-name">רבי אלימלך מליז'ענסק</h2>
+          <p class="nextup-meta"><span id="np-place">ליז'ענסק, פולין</span>, <b id="np-heb">כ״א אדר ב׳ תשפ״ז</b></p>
+        </div>
+        <a class="btn btn-gold" id="np-cta" href="https://wa.me/972553181059" target="_blank" rel="noopener">שריינו מקום</a>
+      </article>
+    </div>
+    <div class="panels" id="panels">
+      <a class="panel is-open" href="/uman" style="--i:0">
+        <img src="/images/uman.jpg" alt="היכל ציון רבי נחמן מברסלב באומן" width="350" height="390" fetchpriority="high">
+        <span class="panel-cap"><small>אוקראינה</small><b>אומן</b></span>
+      </a>
+      <a class="panel" href="/lizhensk" style="--i:1">
+        <img src="/images/ohel.jpg" alt="ציון רבי אלימלך מליז'ענסק" width="900" height="1200">
+        <span class="panel-cap"><small>פולין</small><b>ליז'ענסק</b></span>
+      </a>
+      <a class="panel" href="/kerestir" style="--i:2">
+        <img src="/images/kerestir.jpg" alt="ציון ר' ישעיה מקערסטיר" width="900" height="1200">
+        <span class="panel-cap"><small>הונגריה</small><b>קערסטיר</b></span>
+      </a>
     </div>
   </div>
 </section>
 
-<div class="pass-wrap">
+<section class="board" id="trips" aria-labelledby="trips-title">
   <div class="wrap">
-    <article class="pass" id="next-pass" aria-labelledby="np-name">
-      <div class="pass-main">
-        <p class="pass-label">הנסיעה הקרובה · ההרשמה פתוחה</p>
-        <h2 id="np-name">רבי אלימלך מליז'ענסק</h2>
-        <p class="pass-meta"><span id="np-place">ליז'ענסק, פולין</span> · <b id="np-heb">כ״א אדר ב׳ תשפ״ז</b></p>
-      </div>
-      <div class="pass-stub">
-        <p class="pass-count" aria-live="polite"><span>בעוד</span><b id="np-days">—</b><span id="np-unit">ימים</span></p>
-        <a class="btn btn-ink" id="np-cta" href="https://wa.me/972553181059" target="_blank" rel="noopener">שריינו מקום</a>
-      </div>
-    </article>
-  </div>
-</div>
-
-
-<section class="trips" id="trips" aria-labelledby="trips-title">
-  <div class="wrap">
-    <div class="head">
-      <h2 class="sec-title" id="trips-title">נסיעות קרובות</h2>
-      <p>בחרו נסיעה, שריינו מקום — ונחזור אליכם עם כל הפרטים.</p>
-    </div>
+    <header class="sec-head">
+      <h2 class="sec-title" id="trips-title">לוח הנסיעות</h2>
+      <p>כל הנסיעות הקרובות במקום אחד. בוחרים נסיעה, משריינים מקום, ואנחנו חוזרים אליכם עם כל הפרטים.</p>
+    </header>
+    <div class="board-head" aria-hidden="true"><span>מועד</span><span>נסיעה</span><span>פרטים</span><span></span></div>
     <div class="tgrid" id="trips-grid"></div>
   </div>
 </section>
 
 <section class="stats" id="stats" hidden aria-label="כנפי ציון במספרים"><div class="wrap" id="stats-grid"></div></section>
 
-<section class="journey" id="journey" aria-labelledby="journey-title">
+<section class="dests" id="journey" aria-labelledby="journey-title">
   <div class="wrap">
-    <div>
-      <h2 id="journey-title">מארץ ישראל<br>אל ציוני הצדיקים</h2>
-      <p class="lead">נסיעות קבוצתיות מאורגנות לציוני הצדיקים, בימי ההילולא ולאורך השנה, עם תפילות, סיפורים ואווירה מרוממת.</p>
-      <div class="dest-tabs" role="group" aria-label="בחירת יעד">
-        <button type="button" class="dest-tab" data-dest="lizhensk" aria-selected="true" aria-controls="dest-panel"><small>פולין</small><strong>ליז'ענסק</strong></button>
-        <button type="button" class="dest-tab" data-dest="kerestir" aria-selected="false" aria-controls="dest-panel"><small>הונגריה</small><strong>קערסטיר</strong></button>
-        <button type="button" class="dest-tab" data-dest="pressburg" aria-selected="false" aria-controls="dest-panel"><small>סלובקיה</small><strong>החתם סופר</strong></button>
-        <button type="button" class="dest-tab" data-dest="uman" aria-selected="false" aria-controls="dest-panel"><small>אוקראינה</small><strong>אומן</strong></button>
-      </div>
-      <div class="dest-panel" id="dest-panel" aria-live="polite" tabindex="-1"></div>
-    </div>
-    <figure class="j-visual" aria-live="polite">
-      <div class="j-frame"><img id="j-img" src="/images/ohel.jpg" alt="ציון רבי אלימלך מליז'ענסק" width="900" height="1200" loading="lazy">
-        <svg class="j-emblem" aria-hidden="true"><use href="#wing"/></svg></div>
-      <figcaption id="j-cap">ציון רבי אלימלך מליז'ענסק</figcaption>
-    </figure>
+    <header class="sec-head">
+      <h2 class="sec-title" id="journey-title">היעדים שלנו</h2>
+      <p>נסיעות קבוצתיות מאורגנות לציוני הצדיקים, בימי ההילולא ולאורך השנה, עם תפילות, סיפורים ואווירה מרוממת.</p>
+    </header>
+    <ol class="dest-list">
+      <li><a href="/lizhensk"><span class="dl-name">רבי אלימלך מליז'ענסק</span><span class="dl-place">ליז'ענסק, פולין</span><span class="dl-when">הילולא כ״א אדר</span><span class="dl-go">לפרטים</span></a></li>
+      <li><a href="/kerestir"><span class="dl-name">רבי ישעיה מקערסטיר</span><span class="dl-place">קערסטיר, הונגריה</span><span class="dl-when">הילולא ג׳ אייר</span><span class="dl-go">לפרטים</span></a></li>
+      <li><a href="/pressburg"><span class="dl-name">רבינו החתם סופר</span><span class="dl-place">פרשבורג, סלובקיה</span><span class="dl-when">הילולא כ״ה תשרי</span><span class="dl-go">לפרטים</span></a></li>
+      <li><a href="/uman"><span class="dl-name">רבי נחמן מברסלב</span><span class="dl-place">אומן, אוקראינה</span><span class="dl-when">ראש השנה וחנוכה</span><span class="dl-go">לפרטים</span></a></li>
+    </ol>
   </div>
 </section>
 
-<section class="band" id="why">
-  <div class="wrap tz-grid">
-    <div class="arches">
-      <figure class="arch"><img src="/images/ohel.jpg" alt="ציון רבי אלימלך מליז'ענסק" width="1200" height="1600" loading="lazy"><figcaption>ציון רבי אלימלך מליז'ענסק</figcaption></figure>
-      <figure class="arch"><img src="/images/kerestir.jpg" alt="ציון ר' ישעיה מקערסטיר" width="1530" height="2040" loading="lazy"><figcaption>ציון ר' ישעיה מקערסטיר</figcaption></figure>
+<section class="why" id="why" aria-labelledby="why-title">
+  <div class="wrap why-grid">
+    <div class="why-lead">
+      <h2 class="sec-title" id="why-title">למה לנסוע איתנו</h2>
+      <p class="why-quote">״לעוף רחוק<br>להרגיש בבית״</p>
     </div>
-    <div>
-      <h2 class="sec-title">למה כנפי ציון</h2>
-      <ul class="why">
-        <li><svg aria-hidden="true"><use href="#wing"/></svg><h3>ארגון ברמה גבוהה</h3><p>מחשבה על כל פרט קטן, מהתכנון ועד ההגעה חזרה הביתה.</p></li>
-        <li><svg aria-hidden="true"><use href="#wing"/></svg><h3>ליווי רוחני</h3><p>תפילות בציוני הצדיקים ואווירה של התרוממות לאורך כל הדרך.</p></li>
-        <li><svg aria-hidden="true"><use href="#wing"/></svg><h3>מדריכה מסורה</h3><p>ליווי אישי, חם ואכפתי.</p></li>
-        <li><svg aria-hidden="true"><use href="#wing"/></svg><h3>דיוק ואמינות</h3><p>סדר, דיוק ואכפתיות — נסיעה שאפשר לסמוך עליה בעיניים עצומות.</p></li>
-        <li><svg aria-hidden="true"><use href="#wing"/></svg><h3>כשרות מהודרת</h3><p>אווירה שמורה ומוקפדת.</p></li>
-      </ul>
-    </div>
+    <dl class="why-list">
+      <div><dt>ארגון ברמה גבוהה</dt><dd>מחשבה על כל פרט קטן, מהתכנון ועד ההגעה חזרה הביתה.</dd></div>
+      <div><dt>ליווי רוחני</dt><dd>תפילות בציוני הצדיקים ואווירה של התרוממות לאורך כל הדרך.</dd></div>
+      <div><dt>מדריכה מסורה</dt><dd>ליווי אישי, חם ואכפתי.</dd></div>
+      <div><dt>דיוק ואמינות</dt><dd>סדר, דיוק ואכפתיות. נסיעה שאפשר לסמוך עליה בעיניים עצומות.</dd></div>
+      <div><dt>כשרות מהודרת</dt><dd>אווירה שמורה ומוקפדת.</dd></div>
+    </dl>
   </div>
 </section>
 
@@ -355,6 +302,6 @@
   <button class="ln" type="button" aria-label="התמונה הבאה">‹</button>
 </div>
 
-<script src="/app.js?v=9" defer></script>
+<script src="/app.js?v=10" defer></script>
 </body>
 </html>
